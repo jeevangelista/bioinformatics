@@ -1,12 +1,12 @@
 #!/usr/bin/python
 
 #######################################
-# Outputs a fasta file from a          #
-# tag-filtered fasta file             #
+# Outputs a fasta file from that      #
+# contains the sequences specified in #
+# the tag file.                        #
 # Created by John Erol M. Evangelista #
 #######################################
 
-#TODO! REWORD THE DESCRIPTION!
 
 import sys, getopt
 
@@ -22,7 +22,7 @@ def main(argv):
     sys.exit(2)
   for opt, arg in opts:
     if opt == '-h':
-      print 'Outputs a fasta file from a tag-filtered fasta file'
+      print 'Outputs a fasta file from that contains the sequences specified in the tag file.'
       print 'fasta_parser.py -i <input fasta> -t <tags> -s <separator> -o <output>'
       sys.exit()
     elif opt in ("-i", "--input"):

@@ -66,7 +66,7 @@ def main(argv):
   output_file.write("Longest gene is %d \n" % longest)
   output_file.write("Shortest gene is %d\n" % shortest)
   output_file.write("Mean length is %f\n" % (sum(lengths)/len(lengths)))
-  output_file.write("n50 length is %d, n50 is %d, l50 = %d, total length is %d" % (n50, l, l50, total))
+  output_file.write("n50 is %d \n" % l)
   output_file.close()
 if __name__ == "__main__":
  main(sys.argv[1:])
