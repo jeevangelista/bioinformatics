@@ -2,3 +2,4 @@ N50.py
 split_fasta.pl
 interpro.sh
 unique_counter.py
+.gitignore
