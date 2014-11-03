@@ -11,6 +11,7 @@
 
 from Bio.Blast import NCBIXML
 import sys, getopt
+from collections import deque
 
 def main(argv):
   fasta = ''
@@ -52,23 +53,39 @@ def main(argv):
   print len(query_list)
   input_file = open(fasta,'r')
   output_file = open(output,'w')
-
+  print "sorting..."
+  query_list.sort()
+  print "deque..."
+  query_list = deque(query_list)
+  print "done"
+  print len(query_list)
   line = input_file.readline()
-  while line:
+  query = query_list.popleft() if query_list else None
+  print query
+  print len(query_list)  
+  while line and query:
     if line[0] == '>':
-      # Match
-      if comp != 0 and all(query not in line for query in query_list):
-        output_file.write(line)
-        line = input_file.readline()
-        while line and line[0] != '>':
+      if comp == 0:
+        if query in line:
           output_file.write(line)
           line = input_file.readline()
-      elif comp == 0 and any(query in line for query in query_list):
-        output_file.write(line)
-        line = input_file.readline()
-        while line and line[0] != '>':
+          while line and line[0] != '>':
+            output_file.write(line)
+            line = input_file.readline()
+          query = query_list.popleft() if query_list else None
+        else:
+          line = input_file.readline()
+      elif comp != 0:
+        if query in line:
+          line = input_file.readline()
+          # Equate '######################' instead of None to query so that it'll iterate up to the last line
+          query = query_list.popleft() if query_list else '######################' #TODO: Fix this
+        else:
           output_file.write(line)
           line = input_file.readline()
+          while line and line[0] != '>':
+            output_file.write(line)
+            line = input_file.readline()
       else:
         line = input_file.readline()
     else:
