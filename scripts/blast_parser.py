@@ -48,21 +48,17 @@ def main(argv):
         # Alignment exists!
         if len(alignment.hsps):
           query_list.append(blast_record.query)
-          print blast_record.query
     result_handle.close()
-  print len(query_list)
   input_file = open(fasta,'r')
   output_file = open(output,'w')
-  print "sorting..."
+
   query_list.sort()
-  print "deque..."
+
   query_list = deque(query_list)
-  print "done"
-  print len(query_list)
+
   line = input_file.readline()
   query = query_list.popleft() if query_list else None
-  print query
-  print len(query_list)  
+
   while line and query:
     if line[0] == '>':
       if comp == 0:
@@ -93,7 +89,6 @@ def main(argv):
   output_file.close()
   input_file.close()
 
-  print len(query_list)
 
 if __name__ == "__main__":
  main(sys.argv[1:])
