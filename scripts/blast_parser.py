@@ -52,7 +52,7 @@ def main(argv):
   input_file = open(fasta,'r')
   output_file = open(output,'w')
 
-  query_list.sort()
+  #query_list.sort()
 
   query_list = deque(query_list)
 
