@@ -10,7 +10,7 @@ import sys, getopt, re
 
 def main(argv):
   fasta = ''
-  regex = re.compile('[a-zA-Z0-9]*_[a-zA-Z0-9]*')
+  regex = re.compile('TR[0-9]*\|[a-zA-Z0-9]*_[a-zA-Z0-9]*')
   len_regex =  re.compile('len=[0-9]*')
   output = ''
   try:
